@@ -1,0 +1,19 @@
+.titulo {
+    background: #b30bb3;
+}
+
+.chat {
+    background: #90d4e6;
+}
+
+.enviarMensaje {
+    display: flex;
+}
+
+.textoMensaje {
+    background: #72e69e;
+}
+
+.botonEnviar {
+    background: #888;
+}
