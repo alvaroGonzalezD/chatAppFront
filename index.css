@@ -1,32 +1,57 @@
-.tamañoTotal {
-    width: 100%;
+.ventana {
+    width: 100vw;
+    height: 100vh;
+    background-color: #0c2461;
+    display: flex;
+
+}
+
+.menu {
+    background: #0a3d62;
+    width: 15%;
     height: 100%;
+
 }
 
 .titulo {
-    background: #b30bb3;
-    width: 100%;
-    height: 10vh;
-    font-size: 8vh;
+    font-size: 300%;
     text-align: center;
+    background: #82ccdd;
+    opacity: 30%;
 }
 
-.chat {
-    background: #40407a;
-    width: 100%;
-    height: 85vh;
+.nombre {
+    /*Posicionar abajo del cuadro "menu"*/
+    background-color: #0a3d62;
+}
 
+.ventanaChat {
+    background: #0c2461;
+    width: 100%;
+    height: 85%;
+
+}
+
+.mensajeEnviado {
+    background: #82ccdd;
+    width: 150px;
+    background-size: auto;
+    color: #0a3d62;
+    border-radius: 5px;
+    opacity: 60%;
+    margin: 5px;
+    padding: 5px;
 }
 
 .enviarMensaje {
     display: flex;
     width: 100%;
-    background-color: #72e69e;
-    height: 5vh;
+    background-color: #0c2461;
+    height: 5%;
 }
 
 .textoMensaje {
-    background: #72e69e;
+    background: #0c2461;
     width: 100%;
     margin-left: 5px;
     margin-top: 3px;
