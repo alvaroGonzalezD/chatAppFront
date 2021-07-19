@@ -9,7 +9,7 @@ window.onload = function() {
             /// do stuff
             $.each(this, function(k, v) {
                 tempHtml = $("#textTemplate").html()
-                $("#textTemplate").html(tempHtml + "<p id=" + k + ">" + this["user"] + ": " + this["txt"] + "</p>")
+                $("#textTemplate").html(tempHtml + "<p class= \"mensajeEnChat\" id=" + k + ">" + this["user"] + ": " + this["txt"] + "</p>")
             });
         });
     });

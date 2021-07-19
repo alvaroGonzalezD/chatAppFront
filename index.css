@@ -14,18 +14,26 @@
 }
 
 .titulo {
-    font-size: 300%;
-    text-align: center;
     background: #82ccdd;
     opacity: 30%;
-    height: 15%;
+    height: 10%;
+    min-height: 20px;
+}
+
+.textoTitulo {
+    font-size: 3vw;
+    text-align: center;
+}
+
+.separador {
+    height: 86%;
 }
 
 .nombre {
     /*Posicionar abajo del cuadro "menu"*/
     background-color: #0a3d62;
-    padding-left: 3%;
-    width: 80%;
+    margin-left: 3%;
+    width: 92%;
 }
 
 .ventanaChat {
@@ -50,6 +58,12 @@
     opacity: 60%;
     margin: 5px;
     padding: 5px;
+}
+
+.mensajeEnChat {
+    border-radius: 5px;
+    background-color: white;
+    margin: 5px;
 }
 
 .enviarMensaje {
@@ -79,9 +93,6 @@ textarea {
     margin-left: 10px;
 }
 
-.separador {
-    height: 77%;
-}
 
 #fname {
     border: 0 none white;
