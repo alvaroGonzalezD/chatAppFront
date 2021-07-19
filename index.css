@@ -23,6 +23,8 @@
 .nombre {
     /*Posicionar abajo del cuadro "menu"*/
     background-color: #0a3d62;
+    padding-left: 3%;
+    width: 90%;
 }
 
 .ventanaChat {
@@ -30,6 +32,12 @@
     width: 100%;
     height: 85%;
 
+}
+
+.chat {
+    margin: 1%;
+    height: 105.5%;
+    background-color: lightblue;
 }
 
 .mensajeEnviado {
@@ -73,5 +81,5 @@ textarea {
 }
 
 .separador {
-    height: 80%;
+    height: 85%;
 }
