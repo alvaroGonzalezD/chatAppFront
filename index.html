@@ -15,23 +15,24 @@
         <div class="menu">
             <div class="titulo"> Shin Chat
             </div>
-            <div class ="separador">
-        </div>
-            <div class="nombre"> Nombre Usuario
+            <div class="separador">
+            </div>
+            <div class="nombre">
                 <form action="css">
-                    <textarea id="fname" name="fname"></textarea>
+                    <input type="text" id="fname" name="fname" placeholder="Nombre usuario"></input>
             </div>
         </div>
         <div class="ventanaChat">
             <div class="chat">
-                Aqui se escriben los mensajes
+
+                <div id="textTemplate"></div>
             </div>
             <div class="enviarMensaje">
                 <div class="textoMensaje">
                     <form action="css">
-                        <textarea id="fname" name="fname"></textarea>
+                        <textarea id="ftext" name="ftext" onload="init()" maxlength="255" rows="4" ;></textarea>
                 </div>
-                <input class="botonEnviar" type="submit" value="Enviar">
+                <input class=" botonEnviar" type="submit" value="Enviar">
 
                 </form>
             </div>
