@@ -133,10 +133,21 @@ textarea {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     background: url("http://forums.crackberry.com/attachments/blackberry-10-wallpapers-f308/137432d1361639896t-z10-wallpaper-set-z10-music.jpg");
+
 }
 
+
+
+.chat-wrapper {
+    margin: 0;
+    padding: 0;
+    overflow-y: scroll;
+    height: inherit;
+}
+
+
 .speech-wrapper {
-    padding: 30px 40px;
+    padding: 0;
 }
 
 .speech-wrapper .bubble {

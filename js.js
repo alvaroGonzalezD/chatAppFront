@@ -3,7 +3,7 @@
 window.onload = function() {
 
 
-    $.getJSON("mensajes.json", function(json) {
+    $.getJSON("./mensajes.json", function(json) {
         // inicio
         console.log(json); // this will show the info it in firebug console
         let i = 0
