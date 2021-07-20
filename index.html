@@ -27,15 +27,16 @@
         </div>
         <div class="ventanaChat">
             <div class="chat">
-
                 <div id="textTemplate"></div>
+                <div class="speech-wrapper"></div>
             </div>
             <div class="enviarMensaje">
-                <div class="textoMensaje">
-                    <form action="css">
+                <form action="css">
+
+                    <div class="textoMensaje">
                         <textarea id="ftext" name="ftext" onload="init()" maxlength="255" rows="4" ;></textarea>
-                </div>
-                <input class=" botonEnviar" type="submit" value="Enviar">
+                    </div>
+                    <div class=" botonEnviar" type="submit" id="botonSend" value="Enviar" text="Enviar">Enviar</div>
 
                 </form>
             </div>
