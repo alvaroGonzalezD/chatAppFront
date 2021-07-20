@@ -13,6 +13,10 @@
 
 }
 
+.hiddenMenu {
+    width: 0%;
+}
+
 .titulo {
     background: #82ccdd;
     opacity: 30%;
@@ -148,6 +152,7 @@ textarea {
 
 .speech-wrapper {
     padding: 0;
+    padding-left: 20px;
 }
 
 .speech-wrapper .bubble {
