@@ -1,3 +1,7 @@
+.azul {
+    background-color: #0c2461;
+}
+
 .ventana {
     width: 100vw;
     height: 100vh;
@@ -17,7 +21,7 @@
     background: #82ccdd;
     opacity: 30%;
     height: 10%;
-    min-height: 20px;
+    min-height: 30px;
 }
 
 .textoTitulo {
@@ -26,7 +30,7 @@
 }
 
 .separador {
-    height: 86%;
+    height: 82%;
 }
 
 .nombre {
@@ -87,7 +91,7 @@ textarea {
     margin: 3px;
     margin-left: 10px;
     height: 48px;
-    width: 4%;
+    width: 6%;
     font-size: auto;
     text-align: center;
     padding-top: 25px;
@@ -127,7 +131,7 @@ textarea {
 .chat {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background: url("http://forums.crackberry.com/attachments/blackberry-10-wallpapers-f308/137432d1361639896t-z10-wallpaper-set-z10-music.jpg");
+    background: url("./Z10\ -\ Music.jpg");
 
 }
 
@@ -226,13 +230,21 @@ textarea {
 }
 
 
-@media (max-width: 400px) {
+@media only screen and (hover: none) and (pointer: coarse) {
     .menu {
         /*display: none;*/
         height: 80px;
         position: absolute;
         top: 0;
         width: 100%;
+    }
+
+    .separador {
+        height: 20%;
+    }
+
+    .nombre {
+        width: 15%;
     }
 
     .ventanaChat {
