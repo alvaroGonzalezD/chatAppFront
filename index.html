@@ -2,50 +2,48 @@
 <html lang="es">
 
 <head>
-    <meta charset="utf-8">
-    <script src="./jquery-3.6.0.min.js"></script>
-    <script src="./js.js"></script>
-    <link rel="stylesheet" href="./css/normalize.css">
-    <link rel="stylesheet" href="./css/index.css">
-    <link rel="stylesheet" href="./css/reset.css">
-    <link rel="icon" href="./img/icon.jfif">
-    <title>Shin Chat</title>
+  <meta charset="utf-8">
+  <script src="./jquery-3.6.0.min.js"></script>
+  <script src="./js.js"></script>
+  <link rel="stylesheet" href="./css/normalize.css">
+  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="icon" href="./img/icon.jfif">
+  <title>Shin Chat</title>
 </head>
 
 <body>
-    <div class=main-wrapper>
-        <div class="menu">
-            <div class="titulo">
-                <div class="textoTitulo">
-                    <p>Shin Chat</p>
-                </div>
-            </div>
-            <div class="separador">
-            </div>
+  <div class=main-wrapper>
+    <div class="menu">
+      <div class="titulo">
+        <div class="textoTitulo">
+          <p>Shin Chat</p>
         </div>
-        <div class="ventanaChat">
-            <div class="chat">
-                <div class="chat-wrapper">
-                    <div class="speech-wrapper"></div>
-                </div>
-            </div>
-            <div class="enviarMensaje">
-                <form action="./">
-                    <div class="areaEscritura">
-                        <div>
-                            <input type="text" id="fname" name="fname" placeholder="Nombre usuario" class="nombre">
-                            <div class="textoMensaje">
-                                <textarea id="ftext" name="ftext" maxlength="255" rows="4"></textarea>
-                            </div>
-                        </div>
-                        <div class="botonEnviar" id="botonSend">
-                            <p class="adapt">Enviar</p>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+      </div>
+      <div class="separador">
+      </div>
     </div>
+    <div class="chat-wrapper">
+      <div class="chat">
+        <div class="chat-wrapper">
+          <div class="speech-wrapper"></div>
+        </div>
+      </div>
+      <form action="./">
+        <div class="area-escritura">
+          <div class="area-input">
+            <input type="text" id="fname" name="fname" placeholder="Nombre usuario" class="nombre">
+            <div class="textoMensaje">
+              <textarea id="ftext" name="ftext" maxlength="65535" rows="4"></textarea>
+            </div>
+          </div>
+          <div class="send-button" id="botonSend">
+            <p>Enviar</p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 </body>
 
 </html>
