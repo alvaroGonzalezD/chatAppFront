@@ -1,18 +1,42 @@
 //const {Console} = require("console");
+let direccion = "http://192.168.1.199"
 
 function addMessages(msg_id, v) {
     // tempHtml = $("#textTemplate").html()
     const txt = this["txt"]
     const user = this["user"]
     const dateTime = this["datetime"]
+    console.log('hola')
+    console.log(this)
+    console.log(txt)
+    console.log(user)
+    console.log(dateTime)
 
-    let dateTimeParts = dateTime.split(/[- :]/); // regular expression split that creates array with: year, month, day, hour, minutes, seconds values
-    dateTimeParts[1]--; // monthIndex begins with 0 for January and ends with 11 for December so we need to decrement by one
+    // let dateTimeParts = dateTime.split(/[- :]/); // regular expression split that creates array with: year, month, day, hour, minutes, seconds values
+    // dateTimeParts[1]--; // monthIndex begins with 0 for January and ends with 11 for December so we need to decrement by one
 
-    const dateObject = new Date(...dateTimeParts); // our Date object
+    // const dateObject = new Date(...dateTimeParts); // our Date object
     // const humanTime = dateObject.toLocaleString("es-ES")
 
-    const humanTime = (dateObject.getHours() + ':' + dateObject.getMinutes() + ':' + dateObject.getSeconds())
+    const dateObject = new Date(dateTime)
+
+    const humanTime =
+        (
+            (
+                (dateObject.getHours() < 10 ? '0' : '') +
+                dateObject.getHours()
+
+            ) + ':' +
+            (
+                (dateObject.getMinutes() < 10 ? '0' : '') +
+                dateObject.getMinutes()
+            ) +
+            ':' +
+            (
+                (dateObject.getSeconds() < 10 ? '0' : '') +
+                dateObject.getSeconds()
+            )
+        )
 
 
     // const newMsg = `<p class= "mensajeEnChat" id="${msg_id}"><span>${user}: ${txt}</span></p>`
@@ -39,49 +63,76 @@ function addMessages(msg_id, v) {
 }
 
 
-
 window.onload = function() {
 
 
-    $.getJSON("./mensajes.json", function(json) {
-        // inicio
-        console.log(json); // this will show the info it in firebug console
-        let i = 0
-        $.each(json, function(index) {
-            /// do stuff
-            $.each(this, addMessages);
-        });
-        // fin
-    });
-
-
-    // $.ajax({
-    //     url: "/ajax",
-    //     type: "post",
-    //     data: null,
-    //     dataType: 'json',
-    //     success: function(data) {
-    //         console.log(data);
-    //         console.log(data.id);
-    //     }
+    // $.getJSON(direccion + "/recibir", function(json) {
+    //     // inicio
+    //     dataType: 'jsonp',
+    //     console.log(json); // this will show the info it in firebug console
+    //     let i = 0
+    //     $.each(json, function(index) {
+    //         /// do stuff
+    //         $.each(this, addMessages);
+    //     });
+    //     // fin
     // });
 
-    var formulario = document.getElementById('botonSend');
+
+    $.ajax({
+        url: direccion + "/recibir",
+        type: "post",
+        data: null,
+        dataType: 'jsonp',
+        crossDomain: true,
+        headers: {
+            'Access-Control-Allow-Origin': direccion + "/recibir"
+        },
+        success: function(data) {
+            // console.log(data);
+            // console.log(data.id);
+            $.each(data, function(index) {
+                /// do stuff
+                $.each(this, addMessages);
+            });
+        }
+    });
+
+    var formulario = document.getElementById('botonSend')
     formulario.addEventListener('click', function() {
         var usuario = document.getElementById("fname")
         var mensaje = document.getElementById("ftext")
         console.log(usuario.value)
         console.log(mensaje.value)
-        // $.post("127.0.0.1", {
-        //     json_string: JSON.stringify({
-        //         user: usuario.value,
-        //         txt: mensaje.value
-        //     })
-        // });
+        /*$.post(direccion + "/enviar", {
+            json_string: JSON.stringify({
+                user: usuario.value,
+                txt: mensaje.value
+            })
+
+
+        }).success(console.log("bien")).fail(console.log("mal"));
+*/
+
+        $.ajax({
+            url: direccion + "/enviar",
+            type: "post",
+            data: {
+                //json_string: JSON.stringify({
+                user: usuario.value,
+                txt: mensaje.value
+            },
+            dataType: 'jsonp',
+            crossDomain: true,
+            headers: {
+                'Access-Control-Allow-Origin': direccion + "/recibir"
+            },
+            success: function(data) {
+                console.log("todo guay")
+            }
+        });
 
         //borrar mensaje después de enviar (POST)
-        mensaje.value = ""
+        //mensaje.value = ""
     });
-
-
 }
