@@ -63,7 +63,7 @@ function addMessages(msg_id, v) {
         let msgToAppend = newMsg
         //let msgToAppend = (Math.random() >= 0.5 ? newMsg : ownMsg)
         let usuarioActual = document.getElementById("fname").value
-        if (user == "Laura") {
+        if (user == usuarioActual) {
             msgToAppend = ownMsg
             console.log(user)
         }
@@ -97,28 +97,55 @@ window.onload = function() {
     //     recibir()
     //     console.log("Refresca")
     // }, 1000);
+    setInterval(() => {
 
-    $.ajax({
-        url: direccion + "/recibir",
-        type: "post",
-        contentType: "application/json",
-        dataType: 'json',
-        crossDomain: true,
-        headers: {
-            'Access-Control-Allow-Origin': direccion + "/recibir"
-        },
-        success: function(data) {
-            // console.log(data);
-            // console.log(data.id);
-            $.each(data, function(index) {
-                /// do stuff
-                $.each(this, addMessages);
-            });
-        }
-    });
+        $.ajax({
+            url: direccion + "/recibir",
+            type: "post",
+            contentType: "application/json",
+            dataType: 'json',
+            crossDomain: true,
+            headers: {
+                'Access-Control-Allow-Origin': direccion + "/recibir"
+            },
+            success: function(data) {
+                // console.log(data);
+                // console.log(data.id);
+                $.each(data, function(index) {
+                    /// do stuff
+                    $.each(this, addMessages);
+                });
+            },
+            error: function() {
+                console.log("error")
+            },
+            finally: function() {
+                console.log("fin")
+            }
+        });
+
+
+    }, 2000);
 
     var formulario = document.getElementById('botonSend');
+    var campoTexto = document.getElementById('ftext');
+    campoTexto.addEventListener('keydown', function(event) {
+        switch (event.key) {
+            case "Enter":
+                enviar();
+                break;
+
+            default:
+                break;
+        }
+
+    });
     formulario.addEventListener('click', function() {
+        enviar();
+    });
+
+    function enviar() {
+
         var usuario = document.getElementById("fname")
         var mensaje = document.getElementById("ftext")
         console.log(usuario.value)
@@ -146,8 +173,16 @@ window.onload = function() {
             },
             success: function(data) {
                 console.log("todo guay")
+
+            },
+            error: function(data) {
+                mensaje.value = ""
+            },
+            finally: function(data) {
+                mensaje.value = ""
             }
-        });
+
+        })
 
         // $.ajax({
         //     type: "POST",
@@ -165,8 +200,8 @@ window.onload = function() {
 
 
         //borrar mensaje después de enviar (POST)
-        // mensaje.value = ""
-    });
+
+    }
 
 
 }
