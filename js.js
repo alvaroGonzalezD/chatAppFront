@@ -65,7 +65,7 @@ function addMessages(msg_id, v) {
         let msgToAppend = newMsg
         //let msgToAppend = (Math.random() >= 0.5 ? newMsg : ownMsg)
         let usuarioActual = document.getElementById("fname").value
-        if (user == usuarioActual) {
+        if (user.toUpperCase() == usuarioActual.toUpperCase()) {
             msgToAppend = ownMsg
             console.log(user)
         }
