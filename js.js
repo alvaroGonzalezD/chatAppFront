@@ -1,16 +1,18 @@
 //const {Console} = require("console");
+// let direccion = "http://127.0.0.1:5000"
 let direccion = "http://192.168.1.199"
+
 
 function addMessages(msg_id, v) {
     // tempHtml = $("#textTemplate").html()
     const txt = this["txt"]
     const user = this["user"]
     const dateTime = this["datetime"]
-    console.log('hola')
-    console.log(this)
-    console.log(txt)
-    console.log(user)
-    console.log(dateTime)
+    // console.log('hola')
+    // console.log(this)
+    // console.log(txt)
+    // console.log(user)
+    // console.log(dateTime)
 
     // let dateTimeParts = dateTime.split(/[- :]/); // regular expression split that creates array with: year, month, day, hour, minutes, seconds values
     // dateTimeParts[1]--; // monthIndex begins with 0 for January and ends with 11 for December so we need to decrement by one
@@ -101,31 +103,31 @@ window.onload = function() {
 
         $.ajax({
             url: direccion + "/recibir",
-            type: "post",
+            type: "POST",
             contentType: "application/json",
             dataType: 'json',
             crossDomain: true,
+            cache: false,
             headers: {
-                'Access-Control-Allow-Origin': direccion + "/recibir"
+                // "Access-Control-Allow-Methods": "OPTIONS, PUT",
+                // "Access-Control-Allow-Headers": "Authorization, Origin, Content - Type, Accept",
+                'Access-Control-Allow-Origin': "*" //direccion + "/recibir"
             },
             success: function(data) {
-                // console.log(data);
-                // console.log(data.id);
+                $("#speech-wrapper").html("");
                 $.each(data, function(index) {
-                    /// do stuff
                     $.each(this, addMessages);
                 });
             },
             error: function() {
                 console.log("error")
-            },
-            finally: function() {
-                console.log("fin")
             }
         });
 
 
     }, 2000);
+
+
 
     var formulario = document.getElementById('botonSend');
     var campoTexto = document.getElementById('ftext');
@@ -168,8 +170,10 @@ window.onload = function() {
             },
             dataType: 'json',
             crossDomain: true,
+            cache: false,
             headers: {
-                'Access-Control-Allow-Origin': direccion + "/recibir"
+                "Access-Control-Allow-Origin": "*" //direccion + "/enviar"
+                // 'Content-Type': "application/x-www-form-urlencoded"
             },
             success: function(data) {
                 console.log("todo guay")
@@ -177,6 +181,7 @@ window.onload = function() {
             },
             error: function(data) {
                 mensaje.value = ""
+                console.log("no guay")
             },
             finally: function(data) {
                 mensaje.value = ""
