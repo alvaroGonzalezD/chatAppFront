@@ -125,7 +125,7 @@ window.onload = function() {
         });
 
 
-    }, 2000);
+    }, 200000000);
 
 
 
@@ -159,15 +159,17 @@ window.onload = function() {
         //     })
         // });
 
+        datosJson = {
+            user: usuario.value,
+            txt: mensaje.value
+        }
+
+        console.log(JSON.stringify(datosJson))
         $.ajax({
             url: direccion + "/enviar",
-            type: "post",
-            contentType: "application/json",
-            data: {
-                //json_string: JSON.stringify({
-                user: usuario.value,
-                txt: mensaje.value
-            },
+            type: "POST",
+            contentType: "application/json charset=utf-8",
+            data: JSON.stringify(datosJson),
             dataType: 'json',
             crossDomain: true,
             cache: false,
