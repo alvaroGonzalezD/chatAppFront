@@ -2,22 +2,11 @@
 // let direccion = "http://127.0.0.1:5000"
 let direccion = "http://192.168.1.199"
 
-
-function scrollToBottom() {
-    var objDiv = document.getElementById("speech-wrapper");
-    objDiv.scrollTop = objDiv.scrollHeight;    
-}
-
 function addMessages(msg_id, v) {
     // tempHtml = $("#textTemplate").html()
     const txt = this["txt"]
     const user = this["user"]
     const dateTime = this["datetime"]
-    // console.log('hola')
-    // console.log(this)
-    // console.log(txt)
-    // console.log(user)
-    // console.log(dateTime)
 
     // let dateTimeParts = dateTime.split(/[- :]/); // regular expression split that creates array with: year, month, day, hour, minutes, seconds values
     // dateTimeParts[1]--; // monthIndex begins with 0 for January and ends with 11 for December so we need to decrement by one
@@ -72,7 +61,6 @@ function addMessages(msg_id, v) {
         let usuarioActual = document.getElementById("fname").value
         if (user == usuarioActual) {
             msgToAppend = ownMsg
-            console.log(user)
         }
 
         $(".speech-wrapper").append(msgToAppend)
@@ -81,7 +69,13 @@ function addMessages(msg_id, v) {
 
 }
 
+function scrollToBottom() {
+    var objDiv = document.getElementById("speech-wrapper");
+    objDiv.scrollTop = objDiv.scrollHeight;    
+}
+
 function recibirMensajes() {
+
     $.ajax({
         url: direccion + "/recibir",
         type: "POST",
@@ -93,15 +87,26 @@ function recibirMensajes() {
             'Access-Control-Allow-Origin': "*" //direccion + "/recibir"
         },
         success: function(data) {
+            let speechWrapper = document.getElementById("speech-wrapper");
+            let toTheBottom = false
+            if (Math.round(speechWrapper.scrollHeight-speechWrapper.scrollTop) == Math.round(speechWrapper.clientHeight)){
+                toTheBottom = true
+            }
+
             $("#speech-wrapper").html("");
             $.each(data, function(index) {
                 $.each(this, addMessages);
             });
+
+            if (toTheBottom) {
+                scrollToBottom()
+            }
         },
         error: function() {
             console.log("error")
         }
     });
+
 }
 
 window.onload = function() {
@@ -129,8 +134,6 @@ window.onload = function() {
     function enviar() {
         var usuario = document.getElementById("fname")
         var mensaje = document.getElementById("ftext")
-        console.log(usuario.value)
-        console.log(mensaje.value)
 
         datosJson = {
             user: usuario.value,
