@@ -32,10 +32,7 @@ input {
     height: 82%;
 }
 
-.chat-wrapper {
-    margin: 0;
-    padding: 0;
-}
+
 
 .chat-wrapper .chat {
     margin: 0;
@@ -95,6 +92,7 @@ input {
 .speech-wrapper {
     padding: 0;
     padding-left: 20px;
+    overflow-y: scroll;
 }
 
 .speech-wrapper .bubble {
@@ -190,12 +188,7 @@ input {
     background: lightblue;
 }
 
-.main-wrapper .chat-wrapper {
-    flex: 5;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
+
 
 .chat {
     background: pink;
@@ -203,8 +196,13 @@ input {
 }
 
 .chat-wrapper {
-    height: 1000px;
-    display: block;
+    flex: 5;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+
 }
 
 @media only screen and (pointer: coarse) {
@@ -224,7 +222,7 @@ input {
         width: 15%;
     }
 
-    .main-wrapper .chat-wrapper {
+    .chat-wrapper {
         position: relative;
         top: 80px;
         height: 95%;
