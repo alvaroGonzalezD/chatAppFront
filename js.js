@@ -1,12 +1,15 @@
 //const {Console} = require("console");
 // let direccion = "http://127.0.0.1:5000"
+// let direccion = "http://192.168.1.101:5000"
 let direccion = "http://192.168.1.199"
+
 
 function addMessages(msg_id, v) {
     // tempHtml = $("#textTemplate").html()
     const txt = this["txt"]
     const user = this["user"]
     const dateTime = this["datetime"]
+    const id_msg = this["id_msg"]
 
     // let dateTimeParts = dateTime.split(/[- :]/); // regular expression split that creates array with: year, month, day, hour, minutes, seconds values
     // dateTimeParts[1]--; // monthIndex begins with 0 for January and ends with 11 for December so we need to decrement by one
@@ -38,7 +41,7 @@ function addMessages(msg_id, v) {
 
     // const newMsg = `<p class= "mensajeEnChat" id="${msg_id}"><span>${user}: ${txt}</span></p>`
     const newMsg = `
-        <div class="bubble" id="${msg_id}">
+        <div class="bubble" id="${id_msg}">
             <div class="txt">
                 <p class="name">${user}</p>
                 <p class="message">${txt}</p>
@@ -46,7 +49,7 @@ function addMessages(msg_id, v) {
             </div>
         <div class="bubble-arrow"></div>`
     const ownMsg = `
-        <div class="bubble alt" id="${msg_id}">
+        <div class="bubble alt" id="${id_msg}">
             <div class="txt">
                 <p class="name alt">${user}</p>
                 <p class="message">${txt}</p>
@@ -76,11 +79,24 @@ function scrollToBottom() {
 
 function recibirMensajes() {
 
+    if (document.getElementsByClassName("bubble").length > 0){
+        msg_id = document.getElementsByClassName("bubble")[document.getElementsByClassName("bubble").length-1].getAttribute("id")
+    }else{
+        msg_id = 0
+    }
+
+    
+
+    datosJsonRecibir = {
+        id_msg: msg_id,
+    }
+
     $.ajax({
         url: direccion + "/recibir",
         type: "POST",
-        contentType: "application/json",
+        contentType: "application/json charset=utf-8",
         dataType: 'json',
+        data: JSON.stringify(datosJsonRecibir),
         crossDomain: true,
         cache: false,
         headers: {
@@ -93,7 +109,7 @@ function recibirMensajes() {
                 toTheBottom = true
             }
 
-            $("#speech-wrapper").html("");
+            //$("#speech-wrapper").html("");
             $.each(data, function(index) {
                 $.each(this, addMessages);
             });
