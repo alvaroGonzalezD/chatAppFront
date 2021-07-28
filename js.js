@@ -3,6 +3,11 @@
 let direccion = "http://192.168.1.199"
 
 
+function scrollToBottom() {
+    var objDiv = document.getElementById("speech-wrapper");
+    objDiv.scrollTop = objDiv.scrollHeight;    
+}
+
 function addMessages(msg_id, v) {
     // tempHtml = $("#textTemplate").html()
     const txt = this["txt"]
@@ -76,58 +81,34 @@ function addMessages(msg_id, v) {
 
 }
 
-
+function recibirMensajes() {
+    $.ajax({
+        url: direccion + "/recibir",
+        type: "POST",
+        contentType: "application/json",
+        dataType: 'json',
+        crossDomain: true,
+        cache: false,
+        headers: {
+            'Access-Control-Allow-Origin': "*" //direccion + "/recibir"
+        },
+        success: function(data) {
+            $("#speech-wrapper").html("");
+            $.each(data, function(index) {
+                $.each(this, addMessages);
+            });
+        },
+        error: function() {
+            console.log("error")
+        }
+    });
+}
 
 window.onload = function() {
 
-
-    // function recibir() {
-    //     $.getJSON("./mensajes.json", function(json) {
-    //         // inicio
-    //         console.log(json); // this will show the info it in firebug console
-    //         let i = 0
-    //         $.each(json, function(index) {
-    //             /// do stuff
-    //             $.each(this, addMessages);
-    //         });
-    //         // fin
-    //     });
-    // }
-
-
-    // setInterval(() => {
-    //     recibir()
-    //     console.log("Refresca")
-    // }, 1000);
     setInterval(() => {
-
-        $.ajax({
-            url: direccion + "/recibir",
-            type: "POST",
-            contentType: "application/json",
-            dataType: 'json',
-            crossDomain: true,
-            cache: false,
-            headers: {
-                // "Access-Control-Allow-Methods": "OPTIONS, PUT",
-                // "Access-Control-Allow-Headers": "Authorization, Origin, Content - Type, Accept",
-                'Access-Control-Allow-Origin': "*" //direccion + "/recibir"
-            },
-            success: function(data) {
-                $("#speech-wrapper").html("");
-                $.each(data, function(index) {
-                    $.each(this, addMessages);
-                });
-            },
-            error: function() {
-                console.log("error")
-            }
-        });
-
-
-    }, 200000000);
-
-
+        recibirMensajes()
+    }, 2000);
 
     var formulario = document.getElementById('botonSend');
     var campoTexto = document.getElementById('ftext');
@@ -136,35 +117,26 @@ window.onload = function() {
             case "Enter":
                 enviar();
                 break;
-
             default:
                 break;
         }
-
     });
+
     formulario.addEventListener('click', function() {
         enviar();
     });
 
     function enviar() {
-
         var usuario = document.getElementById("fname")
         var mensaje = document.getElementById("ftext")
         console.log(usuario.value)
         console.log(mensaje.value)
-        // $.post("127.0.0.1", {
-        //     json_string: JSON.stringify({
-        //         user: usuario.value,
-        //         txt: mensaje.value
-        //     })
-        // });
 
         datosJson = {
             user: usuario.value,
             txt: mensaje.value
         }
 
-        console.log(JSON.stringify(datosJson))
         $.ajax({
             url: direccion + "/enviar",
             type: "POST",
@@ -175,40 +147,17 @@ window.onload = function() {
             cache: false,
             headers: {
                 "Access-Control-Allow-Origin": "*" //direccion + "/enviar"
-                // 'Content-Type': "application/x-www-form-urlencoded"
             },
-            success: function(data) {
+            success: function(data, textStatus, req) {
                 console.log("todo guay")
-
             },
-            error: function(data) {
+            error: function(req, textStatus, errorThrown) {
                 mensaje.value = ""
-                console.log("no guay")
+                console.log(textStatus)
             },
-            finally: function(data) {
+            complete: function(req, textStatus) {
                 mensaje.value = ""
             }
-
         })
-
-        // $.ajax({
-        //     type: "POST",
-        //     url: direccion + "/enviar",
-        //     data: JSON.stringify({
-        //         user: usuario.value,
-        //         txt: mensaje.value
-        //     }),
-        //     //contentType: "application/json",
-        //     dataType: 'json',
-        //     complete: function(data) {
-        //         console.log("todo guay")
-        //     }
-        // });​
-
-
-        //borrar mensaje después de enviar (POST)
-
     }
-
-
 }
