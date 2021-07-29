@@ -23,8 +23,6 @@ input {
     background: lightblue;
 }
 
-
-
 .chat {
     background: white;
     overflow: auto;
@@ -37,7 +35,6 @@ input {
     flex-direction: column;
     margin: 0;
     padding: 0;
-
 }
 
 @media only screen and (pointer: coarse) {

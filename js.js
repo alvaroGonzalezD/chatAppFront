@@ -94,7 +94,9 @@ function recibirMensajes() {
         type: "POST",
         contentType: "application/json charset=utf-8",
         dataType: 'json',
-        data: JSON.stringify({id_msg: msg_id}),
+        data: JSON.stringify({
+            id_msg: msg_id
+        }),
         crossDomain: true,
         cache: false,
         success: function(data) {
@@ -107,6 +109,21 @@ function recibirMensajes() {
         },
     });
 
+}
+
+function colorBlu() {
+    console.log("Has pulsado el azul")
+    getElementById('toBlue')
+}
+
+function colorOra() {
+    console.log("Has pulsado el naranja")
+    getElementById('toOrange')
+}
+
+function colorGre() {
+    console.log("Has pulsado el verde")
+    getElementById('toGreen')
 }
 
 window.onload = function() {

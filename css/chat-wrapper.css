@@ -1,19 +1,20 @@
-.chat-wrapper .chatAz {
+.chat-wrapper .chat {
     margin: 0;
     padding-top: 15px;
-    background-color: lightblue;
     font-family: Arial, Helvetica, sans-serif;
-    background: url("../img/fondoAz.jpg");
     flex-grow: 5;
 }
 
-.chat-wrapper .chatNj {
-    margin: 0;
-    padding-top: 15px;
-    background-color: lightblue;
-    font-family: Arial, Helvetica, sans-serif;
+.chat-wrapper .blueBackGround {
+    background: url("../img/fondoAz.jpg");
+}
+
+.chat-wrapper .orangeBackGround {
     background: url("../img/fondoNj.jpg");
-    flex-grow: 5;
+}
+
+.chat-wrapper .greenBackGround {
+    background: url("../img/fondoVd.jpg");
 }
 
 .chat-wrapper .area-escritura {
