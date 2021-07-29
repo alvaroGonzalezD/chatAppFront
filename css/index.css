@@ -74,6 +74,7 @@ input {
 
 .menu .separador .dropdown:hover .dropbtn {
     background-color: #105596;
+    cursor: pointer;
 }
 
 .chat-wrapper .chat {
@@ -289,12 +290,15 @@ input {
     background-color: #2b59f1;
     border-top-left-radius: 27px;
     border-top-right-radius: 27px;
+    cursor: pointer;
 }
 
 .orangeOne:hover {
     background-color: rgb(252, 50, 0);
+    cursor: pointer;
 }
 
 .greenOne:hover {
     background-color: rgb(3, 179, 41);
+    cursor: pointer;
 }
