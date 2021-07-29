@@ -1,5 +1,6 @@
 //const {Console} = require("console");
 // let direccion = "http://127.0.0.1:5000"
+// let direccion = "http://192.168.1.101:5000"
 let direccion = "http://192.168.1.199"
 
 
@@ -8,11 +9,7 @@ function addMessages(msg_id, v) {
     const txt = this["txt"]
     const user = this["user"]
     const dateTime = this["datetime"]
-    // console.log('hola')
-    // console.log(this)
-    // console.log(txt)
-    // console.log(user)
-    // console.log(dateTime)
+    const id_msg = this["id_msg"]
 
     // let dateTimeParts = dateTime.split(/[- :]/); // regular expression split that creates array with: year, month, day, hour, minutes, seconds values
     // dateTimeParts[1]--; // monthIndex begins with 0 for January and ends with 11 for December so we need to decrement by one
@@ -44,7 +41,7 @@ function addMessages(msg_id, v) {
 
     // const newMsg = `<p class= "mensajeEnChat" id="${msg_id}"><span>${user}: ${txt}</span></p>`
     const newMsg = `
-        <div class="bubble" id="${msg_id}">
+        <div class="bubble" id="${id_msg}">
             <div class="txt">
                 <p class="name">${user}</p>
                 <p class="message">${txt}</p>
@@ -52,7 +49,7 @@ function addMessages(msg_id, v) {
             </div>
         <div class="bubble-arrow"></div>`
     const ownMsg = `
-        <div class="bubble alt" id="${msg_id}">
+        <div class="bubble alt" id="${id_msg}">
             <div class="txt">
                 <p class="name alt">${user}</p>
                 <p class="message">${txt}</p>
@@ -67,7 +64,6 @@ function addMessages(msg_id, v) {
         let usuarioActual = document.getElementById("fname").value
         if (user.toUpperCase() == usuarioActual.toUpperCase()) {
             msgToAppend = ownMsg
-            console.log(user)
         }
 
         $(".speech-wrapper").append(msgToAppend)
@@ -76,58 +72,64 @@ function addMessages(msg_id, v) {
 
 }
 
+function scrollToBottom() {
+    var objDiv = document.getElementById("speech-wrapper");
+    objDiv.scrollTop = objDiv.scrollHeight;    
+}
 
+function recibirMensajes() {
+
+    if (document.getElementsByClassName("bubble").length > 0){
+        msg_id = document.getElementsByClassName("bubble")[document.getElementsByClassName("bubble").length-1].getAttribute("id")
+    }else{
+        msg_id = 0
+    }
+
+    
+
+    datosJsonRecibir = {
+        id_msg: msg_id,
+    }
+
+    $.ajax({
+        url: direccion + "/recibir",
+        type: "POST",
+        contentType: "application/json charset=utf-8",
+        dataType: 'json',
+        data: JSON.stringify(datosJsonRecibir),
+        crossDomain: true,
+        cache: false,
+        headers: {
+            'Access-Control-Allow-Origin': "*" //direccion + "/recibir"
+        },
+        success: function(data) {
+            let speechWrapper = document.getElementById("speech-wrapper");
+            let toTheBottom = false
+            if (Math.round(speechWrapper.scrollHeight-speechWrapper.scrollTop) == Math.round(speechWrapper.clientHeight)){
+                toTheBottom = true
+            }
+
+            //$("#speech-wrapper").html("");
+            $.each(data, function(index) {
+                $.each(this, addMessages);
+            });
+
+            if (toTheBottom) {
+                scrollToBottom()
+            }
+        },
+        error: function() {
+            console.log("error")
+        }
+    });
+
+}
 
 window.onload = function() {
 
-
-    // function recibir() {
-    //     $.getJSON("./mensajes.json", function(json) {
-    //         // inicio
-    //         console.log(json); // this will show the info it in firebug console
-    //         let i = 0
-    //         $.each(json, function(index) {
-    //             /// do stuff
-    //             $.each(this, addMessages);
-    //         });
-    //         // fin
-    //     });
-    // }
-
-
-    // setInterval(() => {
-    //     recibir()
-    //     console.log("Refresca")
-    // }, 1000);
     setInterval(() => {
-
-        $.ajax({
-            url: direccion + "/recibir",
-            type: "POST",
-            contentType: "application/json",
-            dataType: 'json',
-            crossDomain: true,
-            cache: false,
-            headers: {
-                // "Access-Control-Allow-Methods": "OPTIONS, PUT",
-                // "Access-Control-Allow-Headers": "Authorization, Origin, Content - Type, Accept",
-                'Access-Control-Allow-Origin': "*" //direccion + "/recibir"
-            },
-            success: function(data) {
-                $("#speech-wrapper").html("");
-                $.each(data, function(index) {
-                    $.each(this, addMessages);
-                });
-            },
-            error: function() {
-                console.log("error")
-            }
-        });
-
-
-    }, 200000000);
-
-
+        recibirMensajes()
+    }, 2000);
 
     var formulario = document.getElementById('botonSend');
     var campoTexto = document.getElementById('ftext');
@@ -136,35 +138,24 @@ window.onload = function() {
             case "Enter":
                 enviar();
                 break;
-
             default:
                 break;
         }
-
     });
+
     formulario.addEventListener('click', function() {
         enviar();
     });
 
     function enviar() {
-
         var usuario = document.getElementById("fname")
         var mensaje = document.getElementById("ftext")
-        console.log(usuario.value)
-        console.log(mensaje.value)
-        // $.post("127.0.0.1", {
-        //     json_string: JSON.stringify({
-        //         user: usuario.value,
-        //         txt: mensaje.value
-        //     })
-        // });
 
         datosJson = {
             user: usuario.value,
             txt: mensaje.value
         }
 
-        console.log(JSON.stringify(datosJson))
         $.ajax({
             url: direccion + "/enviar",
             type: "POST",
@@ -175,40 +166,17 @@ window.onload = function() {
             cache: false,
             headers: {
                 "Access-Control-Allow-Origin": "*" //direccion + "/enviar"
-                // 'Content-Type': "application/x-www-form-urlencoded"
             },
-            success: function(data) {
+            success: function(data, textStatus, req) {
                 console.log("todo guay")
-
             },
-            error: function(data) {
+            error: function(req, textStatus, errorThrown) {
                 mensaje.value = ""
-                console.log("no guay")
+                console.log(textStatus)
             },
-            finally: function(data) {
+            complete: function(req, textStatus) {
                 mensaje.value = ""
             }
-
         })
-
-        // $.ajax({
-        //     type: "POST",
-        //     url: direccion + "/enviar",
-        //     data: JSON.stringify({
-        //         user: usuario.value,
-        //         txt: mensaje.value
-        //     }),
-        //     //contentType: "application/json",
-        //     dataType: 'json',
-        //     complete: function(data) {
-        //         console.log("todo guay")
-        //     }
-        // });​
-
-
-        //borrar mensaje después de enviar (POST)
-
     }
-
-
 }
