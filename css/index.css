@@ -28,11 +28,53 @@ input {
     text-align: center;
 }
 
+
 .menu .separador {
-    height: 82%;
+    margin-top: 10%;
+    text-align: center;
 }
 
+.menu .dropbtn {
+    background-color: #2ba8f1;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border-radius: 27px;
+}
 
+.menu .separador .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.menu .separador .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    z-index: 1;
+    border-radius: 27px;
+}
+
+.menu .separador .dropdown-content a {
+    color: black;
+    padding: 12px 10px;
+    text-decoration: none;
+    display: block;
+}
+
+/* .menu .separador .dropdown-content a:hover {
+    background-color: #ddd;
+    border-radius: 27px;
+} */
+
+.menu .separador .dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.menu .separador .dropdown:hover .dropbtn {
+    background-color: #105596;
+}
 
 .chat-wrapper .chat {
     margin: 0;
@@ -227,4 +269,32 @@ input {
         top: 80px;
         height: 95%;
     }
+}
+
+.blueOne {
+    background-color: #2ba8f1;
+    border-top-left-radius: 27px;
+    border-top-right-radius: 27px;
+}
+
+.orangeOne {
+    background-color: rgb(252, 122, 0);
+}
+
+.greenOne {
+    background-color: lawngreen;
+}
+
+.blueOne:hover {
+    background-color: #2b59f1;
+    border-top-left-radius: 27px;
+    border-top-right-radius: 27px;
+}
+
+.orangeOne:hover {
+    background-color: rgb(252, 50, 0);
+}
+
+.greenOne:hover {
+    background-color: rgb(3, 179, 41);
 }
