@@ -1,0 +1,107 @@
+.menu {
+    background: #0a3d62;
+    width: 15%;
+    height: 100%;
+    max-width: 13rem;
+}
+
+.menu .titulo {
+    background: #82ccdd;
+    opacity: 60%;
+    min-height: 30px;
+}
+
+.menu .titulo .textoTitulo {
+    font-size: 200%;
+    text-align: center;
+}
+
+
+.menu .separador {
+    margin-top: 10%;
+    text-align: center;
+}
+
+.menu .dropbtn {
+    background-color: #2ba8f1;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border-radius: 27px;
+}
+
+.menu .separador .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.menu .separador .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    z-index: 1;
+    border-radius: 27px;
+}
+
+.menu .separador .dropdown-content a {
+    color: black;
+    padding: 12px 10px;
+    text-decoration: none;
+    display: block;
+}
+
+/* .menu .separador .dropdown-content a:hover {
+    background-color: #ddd;
+    border-radius: 27px;
+} */
+
+.menu .separador .dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.menu .separador .dropdown:hover .dropbtn {
+    background-color: #105596;
+    cursor: pointer;
+}
+
+@media only screen and (pointer: coarse) {
+    .menu {
+        /*display: none;*/
+        height: 80px;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+}
+
+.menu .separador .dropdown .dropdown-content .blueOne {
+    background-color: #2ba8f1;
+    border-top-left-radius: 27px;
+    border-top-right-radius: 27px;
+}
+
+.menu .separador .dropdown .dropdown-content .orangeOne {
+    background-color: rgb(252, 122, 0);
+}
+
+.menu .separador .dropdown .dropdown-content .greenOne {
+    background-color: lawngreen;
+}
+
+.menu .separador .dropdown .dropdown-content .blueOne:hover {
+    background-color: #2b59f1;
+    border-top-left-radius: 27px;
+    border-top-right-radius: 27px;
+    cursor: pointer;
+}
+
+.menu .separador .dropdown .dropdown-content .orangeOne:hover {
+    background-color: rgb(252, 50, 0);
+    cursor: pointer;
+}
+
+.menu .separador .dropdown .dropdown-content .greenOne:hover {
+    background-color: rgb(3, 179, 41);
+    cursor: pointer;
+}

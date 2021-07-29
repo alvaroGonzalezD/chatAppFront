@@ -1,0 +1,70 @@
+.chat-wrapper .chatAz {
+    margin: 0;
+    padding-top: 15px;
+    background-color: lightblue;
+    font-family: Arial, Helvetica, sans-serif;
+    background: url("../img/fondoAz.jpg");
+    flex-grow: 5;
+}
+
+.chat-wrapper .chatNj {
+    margin: 0;
+    padding-top: 15px;
+    background-color: lightblue;
+    font-family: Arial, Helvetica, sans-serif;
+    background: url("../img/fondoNj.jpg");
+    flex-grow: 5;
+}
+
+.chat-wrapper .area-escritura {
+    display: flex;
+    flex-direction: row;
+    border: 0 none white;
+    overflow: auto;
+    padding: 0;
+    outline: none;
+    background-color: #D0D0D0;
+}
+
+.chat-wrapper .area-escritura .area-input {
+    flex-grow: 5;
+}
+
+.chat-wrapper .area-escritura .area-input .nombre {
+    /*Posicionar abajo del cuadro "menu"*/
+    width: 100%;
+    border: 0 none white;
+    overflow: hidden;
+    outline: none;
+    background-color: #D0D0D0;
+}
+
+.chat-wrapper .area-escritura textarea {
+    width: 100%;
+    resize: none;
+    justify-content: center;
+    padding: 0;
+    border: none;
+}
+
+.chat-wrapper .area-escritura .send-button {
+    background: #888;
+    text-align: center;
+    padding-top: 25px;
+    cursor: pointer;
+    width: 4em;
+}
+
+.chat-wrapper .area-escritura .send-button:hover {
+    color: black;
+    background: rgba(127, 127, 127, 0.815);
+}
+
+@media only screen and (pointer: coarse) {
+
+    .chat-wrapper {
+        position: relative;
+        top: 80px;
+        height: 95%;
+    }
+}
