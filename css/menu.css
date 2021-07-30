@@ -22,6 +22,10 @@
     text-align: center;
 }
 
+/* .menu .separador .droplist {
+    none
+} */
+
 .menu .dropbtn {
     background-color: #2ba8f1;
     color: white;
@@ -49,6 +53,7 @@
     padding: 12px 10px;
     text-decoration: none;
     display: block;
+
 }
 
 /* .menu .separador .dropdown-content a:hover {
@@ -87,6 +92,8 @@
 
 .menu .separador .dropdown .dropdown-content .greenOne {
     background-color: lawngreen;
+    border-bottom-left-radius: 27px;
+    border-bottom-right-radius: 27px;
 }
 
 .menu .separador .dropdown .dropdown-content .blueOne:hover {

@@ -4,6 +4,7 @@
 let direccion = "http://192.168.1.199"
 
 
+
 function addMessages(msg_id, v) {
     function getHumantime() {
         const dateObject = new Date(dateTime)
@@ -15,7 +16,7 @@ function addMessages(msg_id, v) {
         }
 
         for (key in ht) {
-            ht[key] = (ht[key] < 10 ? '0' : '') + ht[key]
+            ht[key] = (ht[key] < 10 ? "0" : "") + ht[key]
         }
 
         return `${ht.h}:${ht.m}:${ht.s}`
@@ -93,7 +94,7 @@ function recibirMensajes() {
         url: direccion + "/recibir",
         type: "POST",
         contentType: "application/json charset=utf-8",
-        dataType: 'json',
+        dataType: "json",
         data: JSON.stringify({
             id_msg: msg_id
         }),
@@ -111,20 +112,62 @@ function recibirMensajes() {
 
 }
 
-function colorBlu() {
-    console.log("Has pulsado el azul")
-    getElementById('toBlue')
+
+
+function changeBack(background, menu, titulo, boton, color) {
+    console.log(background)
+    background.classList.remove("orangeBackGround", "greenBackGround", "blueBackGround")
+    colorString = "BackGround"
+    colorString = color + colorString
+
+    let colorMenu = "white"
+    let colorTitle = "white"
+    let colorButton = "white"
+
+    switch (color) {
+        case "blue":
+            colorMenu = "lightblue"
+            colorTitle = "#82ccdd"
+            colorButton = "#2ba8f1"
+            break;
+        case "orange":
+            colorMenu = "#ff9f43"
+            colorTitle = "#feca57"
+            colorButton = "#fa983a"
+            break;
+        case "green":
+            colorMenu = "#78e08f"
+            colorTitle = "#b8e994"
+            colorButton = "#10ac84"
+            break;
+        default:
+            break;
+    }
+
+    menu.style.background = colorMenu
+    titulo.style.background = colorTitle
+    boton.style.background = colorButton
+
+    console.log("Has pulsado el " + color)
+    background.classList.add(colorString)
+
 }
 
-function colorOra() {
-    console.log("Has pulsado el naranja")
-    getElementById('toOrange')
-}
+// function colorBlu() {
+//     console.log("Has pulsado el azul")
+//     changeBack().classList.add("backGroundBlue")
 
-function colorGre() {
-    console.log("Has pulsado el verde")
-    getElementById('toGreen')
-}
+// }
+
+// function colorOra() {
+//     console.log("Has pulsado el naranja")
+//     "chat-wrapper".classList.remove("blueBackGround", "greenBackGround")
+// }
+
+// function colorGre() {
+//     console.log("Has pulsado el verde")
+//     "chat-wrapper".classList.remove("blueBackGround", "orangeBackGround")
+// }
 
 window.onload = function() {
 
@@ -132,9 +175,9 @@ window.onload = function() {
         recibirMensajes()
     }, 2000);
 
-    var formulario = document.getElementById('botonSend');
-    var campoTexto = document.getElementById('ftext');
-    campoTexto.addEventListener('keydown', function(event) {
+    var formulario = document.getElementById("botonSend");
+    var campoTexto = document.getElementById("ftext");
+    campoTexto.addEventListener("keydown", function(event) {
         switch (event.key) {
             case "Enter":
                 enviar();
@@ -144,9 +187,21 @@ window.onload = function() {
         }
     });
 
-    formulario.addEventListener('click', function() {
+    formulario.addEventListener("click", function() {
         enviar();
     });
+
+    let background = document.getElementById("backGround")
+    let menu = document.getElementById("menu")
+    let titulo = document.getElementById("titulo")
+    let boton = document.getElementById("boton")
+    let backGroundChangers = document.getElementsByClassName("colorChanger")
+    Array.from(backGroundChangers).forEach(element => {
+        element.addEventListener("click", function() {
+            changeBack(background, menu, titulo, boton, element.id);
+        });
+    });
+
 
     function enviar() {
         var usuario = document.getElementById("fname")
