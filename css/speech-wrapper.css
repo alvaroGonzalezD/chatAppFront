@@ -82,3 +82,18 @@
 .speech-wrapper .bubble .bubble-arrow.alt:after {
     transform: rotate(45deg) scaleY(-1);
 }
+
+.bi-three-dots-div {
+    position: absolute;top: 5%;
+    position: absolute;left: 90%;
+    border-radius: 5px;
+    height: 5px;
+    margin-top: 0.15%;
+    padding-bottom: 3%;
+    padding-top: 0.25%;
+    text-align: center;
+}
+
+.dropdown-menu {
+    min-width: 0rem !important;
+}

@@ -56,6 +56,26 @@ function addMessages(msg_id, v) {
                 <p class="name alt">${user}</p>
                 <p class="message">${txt}</p>
                 <span class="timestamp">${humanTime}</span>
+
+
+                
+                <div class="bi-three-dots-div">
+                <div class="btn-group" role="group">
+                <button id="btnGroupVerticalDrop2" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="bi bi-three-dots"></i>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop2" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+                  <i class="dropdown-item bi bi-trash"></i>
+                  <i class="dropdown-item bi bi-pencil"></i>
+                </div>
+              </div>
+
+
+
+
+
+                
+                </div>
         </div>
         <div class="bubble-arrow alt"></div>`
 
