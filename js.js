@@ -33,6 +33,15 @@ function addMessages(msg_id, v) {
         }
 
         $(".speech-wrapper").append(msgToAppend)
+
+        //     id="${id_msg}_borrar">
+        //  id="${id_msg}_editar"
+        let borrar = document.getElementById(id_msg+"_borrar")
+        if (borrar != null) {
+            borrar.addEventListener("click", function() {
+                delete_msg(id_msg);
+            });
+        }
     }
 
     const txt = this["txt"]
@@ -65,8 +74,8 @@ function addMessages(msg_id, v) {
                 <i class="bi bi-three-dots"></i>
                 </button>
                 <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop2" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
-                  <i class="dropdown-item bi bi-trash"></i>
-                  <i class="dropdown-item bi bi-pencil"></i>
+                  <i class="dropdown-item bi bi-trash" id="${id_msg}_borrar"></i>
+                  <i class="dropdown-item bi bi-pencil" id="${id_msg}_editar"></i>
                 </div>
               </div>
 
@@ -253,4 +262,33 @@ window.onload = function() {
             }
         })
     }
+}
+
+function delete_msg(id_msg) {
+
+    datosJson = {
+        id_msg : id_msg
+    }
+
+    $.ajax({
+        url: direccion + "/borrar",
+        type: "POST",
+        contentType: "application/json charset=utf-8",
+        data: JSON.stringify(datosJson),
+        crossDomain: true,
+        cache: false,
+        success: function(data, textStatus, req) {
+            // pass
+        },
+        error: function(req, textStatus, errorThrown) {
+            //mensaje.value = ""
+            console.error(textStatus)
+            console.log(errorThrown)
+        },
+        complete: function(req, textStatus) {
+            //mensaje.value = ""
+        }
+    })
+
+    
 }
