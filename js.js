@@ -1,8 +1,8 @@
 //const {Console} = require("console");
 // let direccion = "http://127.0.0.1:5000"
 // let direccion = "http://192.168.1.101:5000"
-let direccion = "http://192.168.1.199"
-// let direccion = "https://chat.shinchat.de/"
+// let direccion = "http://192.168.1.199"
+let direccion = "https://chat.shinchat.de/"
 
 
 
